@@ -23,19 +23,20 @@ import java.util.concurrent.TimeUnit;
  * @author Haifeng.Zhu
  *         created at 1/29/18
  */
-public class DefaultAnalysis implements Analysis {
-    
-    @Override
-    public ChosenAnswer getAnswer(byte[] imgBytes, GameConfig gameConfig) {
-        OCR ocrMethod = Factories.getOcrMethod(OcrMethod.BAIDU, gameConfig);
-        QuestionAndAnswer questionAndAnswer = ocrMethod.getQuestionAndAnswer(imgBytes);
+public class HitNumAnalysis extends Analysis {
 
+    public HitNumAnalysis(byte[] imgBytes, GameConfig gameConfig) {
+        super(imgBytes, gameConfig);
+    }
+
+    @Override
+    public ChosenAnswer getAnswer(QuestionAndAnswer questionAndAnswer) {
         // use multi thread model to search result
         List<Future<SearchResult>> futureList = new ArrayList<>();
         ThreadPoolExecutor threadPool = Factories.getThreadPool();
         questionAndAnswer.getAnswers().forEach( (answer) -> {
             String searchKey = questionAndAnswer.getQuestion() + " " + answer;
-            futureList.add(threadPool.submit(Factories.getSearchMethod(SearchMethod.BAIDU, gameConfig, searchKey)));
+            futureList.add(threadPool.submit(Factories.getSearchMethod(SearchMethod.BAIDU,  gameConfig, searchKey)));
         });
         
         // get all answer, and chose the one have most or least hit num
@@ -92,14 +93,5 @@ public class DefaultAnalysis implements Analysis {
             return true;
         }
         return false;
-    }
-
-    public static void main(String[] args) {
-        GameConfig_PeekMeeting config = new GameConfig_PeekMeeting();
-        String path = "src/resource/screenshot_after_cut.png";
-        byte[] imgBytes = ImageUtil.getByteFromImage(ImageUtil.cutImage(path, config),config);
-        DefaultAnalysis analysis = new DefaultAnalysis();
-        ChosenAnswer chosenAnswer = analysis.getAnswer(imgBytes, config);
-        System.out.println(chosenAnswer.toString());
     }
 }

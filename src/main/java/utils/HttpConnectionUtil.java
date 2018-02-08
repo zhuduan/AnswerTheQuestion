@@ -1,5 +1,7 @@
 package utils;
 
+import common.Config.*;
+
 import java.io.InputStream;
 import java.net.Authenticator;
 import java.net.HttpURLConnection;
@@ -7,6 +9,8 @@ import java.net.InetSocketAddress;
 import java.net.PasswordAuthentication;
 import java.net.Proxy;
 import java.net.URL;
+
+import static common.Config.*;
 
 /**
  * purpose of this class
@@ -20,11 +24,6 @@ public class HttpConnectionUtil {
     private static final String RES_AGENT_INFO = "Mozilla/4.0 (compatible; MSIE 6.0; Windows 2000)";
     
     private static final int TIME_OUT = 2000;
-    
-    private static final String PROXY_ADDR = "sheraton.h.timonit.cn";
-    private static final int PROXY_PORT = 15944;
-    private static final String PROXY_USER = "duotai";
-    private static final String PROXY_PASS = "xTXQ8-Atp747-Br2dJV";
 
     public static InputStream getInfo(URL url){
         try {
