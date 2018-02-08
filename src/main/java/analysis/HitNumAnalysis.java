@@ -17,6 +17,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import static common.Config.SEARCH_MODE;
+
 /**
  * purpose of this class
  *
@@ -36,7 +38,7 @@ public class HitNumAnalysis extends Analysis {
         ThreadPoolExecutor threadPool = Factories.getThreadPool();
         questionAndAnswer.getAnswers().forEach( (answer) -> {
             String searchKey = questionAndAnswer.getQuestion() + " " + answer;
-            futureList.add(threadPool.submit(Factories.getSearchMethod(SearchMethod.BAIDU,  gameConfig, searchKey)));
+            futureList.add(threadPool.submit(Factories.getSearchMethod(SEARCH_MODE,  gameConfig, searchKey)));
         });
         
         // get all answer, and chose the one have most or least hit num
@@ -89,7 +91,7 @@ public class HitNumAnalysis extends Analysis {
     
     // whether this is a "not" question
     private Boolean isNegativeQuestion(QuestionAndAnswer questionAndAnswer){
-        if ( questionAndAnswer.getQuestion().contains("不是") ){
+        if ( questionAndAnswer.getQuestion().contains("不是") || questionAndAnswer.getQuestion().contains("不属于") ){
             return true;
         }
         return false;

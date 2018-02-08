@@ -12,11 +12,17 @@ public class ChosenAnswer {
     private String answer = "未知";
 
     public ChosenAnswer() {
+        this.chooseIndex = -1;
+        this.answer = "未知";
     }
 
     public ChosenAnswer(Integer chooseIndex, String answer) {
         this.chooseIndex = chooseIndex;
         this.answer = answer;
+    }
+
+    public Boolean isValidAnswer(){
+        return (chooseIndex>=0);
     }
 
     public Integer getChooseIndex() {
