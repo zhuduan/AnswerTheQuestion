@@ -20,7 +20,8 @@ import java.util.concurrent.TimeUnit;
 import static common.Config.SEARCH_MODE;
 
 /**
- * purpose of this class
+ * search the question + answer and then get the most/least hit num value as the answer
+ *      future to do : if the difference of the hit number is not significant, should treat it as no answer
  *
  * @author Haifeng.Zhu
  *         created at 1/29/18
@@ -83,7 +84,7 @@ public class HitNumAnalysis extends Analysis {
             }
         }
         
-        ChosenAnswer chosenAnswer = new ChosenAnswer();
+        ChosenAnswer chosenAnswer = new ChosenAnswer(AnalysisMethod.HIT_NUM);
         chosenAnswer.setChooseIndex(chosenAnswerIndex);
         chosenAnswer.setAnswer(questionAndAnswer.getAnswers().get(chosenAnswerIndex));
         return chosenAnswer;
@@ -91,6 +92,7 @@ public class HitNumAnalysis extends Analysis {
     
     // whether this is a "not" question
     private Boolean isNegativeQuestion(QuestionAndAnswer questionAndAnswer){
+        // this judgement is simple, may use Tokenizer to do this in future
         if ( questionAndAnswer.getQuestion().contains("不是") || questionAndAnswer.getQuestion().contains("不属于") ){
             return true;
         }

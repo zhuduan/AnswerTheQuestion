@@ -12,6 +12,8 @@ import utils.ImageUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by 618 on 2018/1/12.
@@ -63,7 +65,13 @@ public class BaiDuOCR implements OCR{
             if ( tempStr.contains("?") || tempStr.length()<config.getQa_txt_max_per_line()){
                 isQuestionCompleted = true;
             }
-            question.append(tempStr);
+            Pattern pattern = Pattern.compile("[^\\d\\.\\s]((\\w)*([\\u4e00-\\u9fa5\\u3040-\\u309f\\u30a0-\\u30ff]*))+");
+            Matcher matcher = pattern.matcher(tempStr);
+            if( matcher.find() ) {
+                question.append(matcher.group());
+            } else {
+                question.append(tempStr);
+            }
         }
        return new QuestionAndAnswer(question.toString(), answerList, config);
     }

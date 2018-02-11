@@ -8,7 +8,7 @@ package common;
  */
 public class Config {
 
-    // Customer  mode : specific the tool you want to use
+    // Customer mode : specific the tool you want to use
     public static final OcrMethod OCR_MODE = OcrMethod.BAIDU;
     public static final SearchMethod SEARCH_MODE = SearchMethod.BAIDU;
 
@@ -26,7 +26,7 @@ public class Config {
 
     public enum OcrMethod {
         BAIDU(1),
-        Tess(2);
+        TESS(2);
         
         private int id;
 
@@ -43,6 +43,20 @@ public class Config {
 
         SearchMethod(int id) {
             this.id = id;
+        }
+    }
+    
+    public enum AnalysisMethod{
+        DEFAULT(0, 1.0),
+        HIT_NUM(1, 1.0),
+        QUESTION_BANK(2, 1.0);
+        
+        private int id;
+        private double weight;      // the answer's weight, using this to judge final answer from various method
+
+        AnalysisMethod(int id, double weight) {
+            this.id = id;
+            this.weight = weight;
         }
     }
 }

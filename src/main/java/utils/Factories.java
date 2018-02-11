@@ -10,10 +10,7 @@ import search.impl.BaiDuSearch;
 import search.impl.GoogleSearch;
 
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -29,7 +26,7 @@ public class Factories {
         switch (type){
             case BAIDU:
                 return new BaiDuOCR(config);
-            case Tess:
+            case TESS:
                 return new TessOCR(config);
             default:
                 return new TessOCR(config);
