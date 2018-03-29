@@ -9,7 +9,8 @@ import com.team.common.Config.*;
  *         created at 2/7/18
  */
 public class ChosenAnswer {
-    
+
+    private String question = "";
     private Integer chooseIndex = -1;
     private String answer = "未知";
     private AnalysisMethod analysisMethod = AnalysisMethod.DEFAULT;
@@ -19,10 +20,11 @@ public class ChosenAnswer {
         this.answer = "未知";
     }
 
-    public ChosenAnswer(Integer chooseIndex, String answer, AnalysisMethod analysisMethod) {
+    public ChosenAnswer(Integer chooseIndex, String answer, AnalysisMethod analysisMethod, String question) {
         this.chooseIndex = chooseIndex;
         this.answer = answer;
         this.analysisMethod = analysisMethod;
+        this.question = question;
     }
 
     public ChosenAnswer(AnalysisMethod analysisMethod) {
@@ -57,9 +59,18 @@ public class ChosenAnswer {
         this.analysisMethod = analysisMethod;
     }
 
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
     @Override
     public String toString(){
         return "From " + this.analysisMethod.toString() + "\r\n" 
-                + "Answer is " + (chooseIndex+1) + " : " + answer;
+                + "Answer is " + (chooseIndex+1) + " : " + answer + "\r\n"
+                + "Question is : " + question ;
     }
 }

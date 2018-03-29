@@ -1,5 +1,7 @@
 package com.team.common;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * The config info 
  *
@@ -45,35 +47,21 @@ public class Config {
             this.id = id;
         }
     }
-    
+
+    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     public enum AnalysisMethod{
-        DEFAULT(0, 1.0),
-        HIT_NUM(1, 1.0),
-        QUESTION_BANK(2, 1.0);
+        DEFAULT(0, "default method", 1.0),
+        HIT_NUM(1, "hit num method", 1.0),
+        QUESTION_BANK(2, "question bank method", 1.0);
         
         private int id;
+        private String name;
         private double weight;      // the answer's weight, using this to judge final answer from various method
 
-        AnalysisMethod(int id, double weight) {
-            this.id = id;
-            this.weight = weight;
-        }
-    }
-
-    public enum Schedule{
-
-        PeekMeeting(1, "peekMeeting_noon", "13:00:00", true);
-
-        private int id;
-        private String name;
-        private String startTime;
-        private Boolean autoStart;
-
-        Schedule(int id, String name, String startTime, Boolean autoStart) {
+        AnalysisMethod(int id, String name, double weight) {
             this.id = id;
             this.name = name;
-            this.startTime = startTime;
-            this.autoStart = autoStart;
+            this.weight = weight;
         }
     }
 }

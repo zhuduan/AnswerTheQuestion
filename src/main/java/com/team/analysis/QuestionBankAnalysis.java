@@ -71,6 +71,7 @@ public class QuestionBankAnalysis extends Analysis {
             if ( answerStr.contains(answer) ){
                 chosenAnswer.setAnswer(answer);
                 chosenAnswer.setChooseIndex(questionAndAnswer.getAnswers().indexOf(answer));
+                chosenAnswer.setQuestion(questionAndAnswer.getQuestion());
                 break;
             }
         }

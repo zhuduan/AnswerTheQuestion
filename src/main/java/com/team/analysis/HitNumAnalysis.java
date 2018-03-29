@@ -83,6 +83,7 @@ public class HitNumAnalysis extends Analysis {
         ChosenAnswer chosenAnswer = new ChosenAnswer(AnalysisMethod.HIT_NUM);
         chosenAnswer.setChooseIndex(chosenAnswerIndex);
         chosenAnswer.setAnswer(questionAndAnswer.getAnswers().get(chosenAnswerIndex));
+        chosenAnswer.setQuestion(questionAndAnswer.getQuestion());
         return chosenAnswer;
     }
     
