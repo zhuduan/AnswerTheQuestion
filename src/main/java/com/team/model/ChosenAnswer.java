@@ -10,14 +10,15 @@ import com.team.common.Config.*;
  */
 public class ChosenAnswer {
 
-    private String question = "";
+    private String question = "no question for now";
     private Integer chooseIndex = -1;
-    private String answer = "未知";
+    private String answer = "no answer for now";
     private AnalysisMethod analysisMethod = AnalysisMethod.DEFAULT;
 
     public ChosenAnswer() {
         this.chooseIndex = -1;
-        this.answer = "未知";
+        this.answer = "no answer for now";
+        this.question = "no question for now";
     }
 
     public ChosenAnswer(Integer chooseIndex, String answer, AnalysisMethod analysisMethod, String question) {
