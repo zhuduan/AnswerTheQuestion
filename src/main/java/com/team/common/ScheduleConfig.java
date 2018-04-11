@@ -15,7 +15,7 @@ public enum ScheduleConfig {
             new Schedule("13:00:00", "13:30:00"),
             new Schedule("18:00:00", "18:30:00"))),
     MILLION_HERO(2, "百万英雄", "该游戏处于调试处理阶段,暂时全天都生效", Arrays.asList(
-            new Schedule("9:00:00", "23:30:00")));
+            new Schedule("09:00:00", "23:30:00")));
 
     @JsonProperty("id")
     private int id;
