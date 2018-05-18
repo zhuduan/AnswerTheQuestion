@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 public class AnswerServiceImpl implements AnswerService {
     
     @Override
-    public ChosenAnswer getAnswerByName(String gameName) {
-        ChosenAnswer chosenAnswer =  AnswerMap.get(gameName);
+    public ChosenAnswer getAnswerByGameID(Integer gameID) {
+        ChosenAnswer chosenAnswer =  AnswerMap.get(gameID);
         
         // if no answer here, should return  the default value 
         if ( chosenAnswer==null ){

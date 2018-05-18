@@ -24,6 +24,10 @@ public class Config {
     public static final int PROXY_PORT = 15944;
     public static final String PROXY_USER = "duotai";
     public static final String PROXY_PASS = "xTXQ8-Atp747-Br2dJV";
+    
+    // the game ids 
+    public static final int GAME_PEEK_MEETING = 1;
+    public static final int GAME_MILLION_HERO = 2;
 
 
     public enum OcrMethod {

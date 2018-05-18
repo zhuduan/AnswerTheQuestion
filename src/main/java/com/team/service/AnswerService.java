@@ -4,5 +4,5 @@ import com.team.model.ChosenAnswer;
 
 public interface AnswerService {
     
-    ChosenAnswer getAnswerByName(String gameName);
+    ChosenAnswer getAnswerByGameID(Integer gameID);
 }

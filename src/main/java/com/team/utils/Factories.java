@@ -1,7 +1,12 @@
 package com.team.utils;
 
+import com.team.common.Config;
 import com.team.common.GameConfig;
 import com.team.common.Config.*;
+import com.team.common.GameConfig_Default;
+import com.team.common.GameConfig_MillionHero;
+import com.team.common.GameConfig_PeekMeeting;
+import com.team.common.ScheduleConfig;
 import com.team.ocr.OCR;
 import com.team.ocr.impl.BaiDuOCR;
 import com.team.ocr.impl.TessOCR;
@@ -56,5 +61,17 @@ public class Factories {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, maxPoolSize, 
                 keepAliveMillions, TimeUnit.MILLISECONDS, workQueue);
         return threadPoolExecutor;
+    }
+    
+    
+    public static GameConfig getGameConfig(Integer gameConfigID){
+        switch (gameConfigID){
+            case Config.GAME_PEEK_MEETING:
+                return new GameConfig_PeekMeeting();
+            case Config.GAME_MILLION_HERO:
+                return new GameConfig_MillionHero();
+            default:
+                return new GameConfig_Default();
+        }
     }
 }

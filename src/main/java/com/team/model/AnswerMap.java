@@ -12,13 +12,13 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class AnswerMap {
     
-    private static volatile Map<String, ChosenAnswer> answers = new ConcurrentHashMap<>();
+    private static volatile Map<Integer, ChosenAnswer> answers = new ConcurrentHashMap<>();
     
-    public static ChosenAnswer get(String key){
+    public static ChosenAnswer get(Integer key){
         return answers.get(key);
     }
     
-    public static void put(String key, ChosenAnswer value){
+    public static void put(Integer key, ChosenAnswer value){
         answers.put(key, value);
     }
 }
